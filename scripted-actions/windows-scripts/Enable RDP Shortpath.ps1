@@ -26,3 +26,7 @@ New-NetFirewallRule -DisplayName 'Remote Desktop - Shortpath (UDP-In)' `
     -LocalPort 3390 `
     -Program '%SystemRoot%\system32\svchost.exe' `
     -Enabled:True
+
+# QoS
+New-NetQosPolicy -Name "RDP Shortpath" -AppPathNameMatchCondition "svchost.exe" -IPProtocolMatchCondition UDP -IPSrcPortStartMatchCondition 3390 -IPSrcPortEndMatchCondition 3390 -DSCPAction 46 -NetworkProfile All
+
