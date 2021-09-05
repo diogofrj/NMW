@@ -49,20 +49,34 @@ $ODTConfig = @"
 <Configuration>
   <Add OfficeClientEdition="64" Channel="MonthlyEnterprise">
     <Product ID="O365ProPlusRetail">
-      <Language ID="en-US" />
-      <Language ID="MatchOS" />
+      <Language ID="pt-br" />
+      <Language ID="en-us" />
       <ExcludeApp ID="Groove" />
       <ExcludeApp ID="Lync" />
       <ExcludeApp ID="OneDrive" />
       <ExcludeApp ID="Teams" />
     </Product>
+    <Product ID="LanguagePack">
+      <Language ID="pt-br" />
+      <Language ID="en-us" />
+    </Product>
+    <Product ID="ProofingTools">
+      <Language ID="pt-br" />
+      <Language ID="en-us" />
+    </Product>
   </Add>
-  <RemoveMSI/>
-  <Updates Enabled="FALSE"/>
+  <Property Name="SharedComputerLicensing" Value="1" />
+  <Property Name="PinIconsToTaskbar" Value="TRUE" />
+  <Property Name="SCLCacheOverride" Value="0" />
+  <Property Name="FORCEAPPSHUTDOWN" Value="FALSE" />
+  <Property Name="DeviceBasedLicensing" Value="0" />
+  <AppSettings>
+    <User Key="software\microsoft\office\16.0\excel\options" Name="defaultformat" Value="51" Type="REG_DWORD" App="excel16" Id="L_SaveExcelfilesas" />
+    <User Key="software\microsoft\office\16.0\powerpoint\options" Name="defaultformat" Value="27" Type="REG_DWORD" App="ppt16" Id="L_SavePowerPointfilesas" />
+    <User Key="software\microsoft\office\16.0\word\options" Name="defaultformat" Value="" Type="REG_SZ" App="word16" Id="L_SaveWordfilesas" />
+  </AppSettings>
   <Display Level="None" AcceptEULA="TRUE" />
-  <Logging Level="Standard" Path="%temp%\WVDOfficeInstall" />
-  <Property Name="FORCEAPPSHUTDOWN" Value="TRUE"/>
-  <Property Name="SharedComputerLicensing" Value="1"/>
+<Logging Level="Standard" Path="%WINDIR%\Logs\Software" />
 </Configuration>
 "@ 
 $ODTConfig | Out-File "$env:windir\Temp\odt_sa\raw\odtconfig.xml"
